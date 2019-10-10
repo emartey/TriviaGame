@@ -23,7 +23,10 @@
                     Dragon Ball Trivia
                 </h3>
                 <div class="card-body" style="background-color: black">
-                    <p class="strong text-center" style="color: white" id="questAnswers">Hope you like games! Each
+                    <p id="remaining-time" class="lead" style="display: none; color: white;">Remaining Time: <span
+                            id="timer"></span>
+                    </p>
+                    <p class="strong text-center" style="color: white" id="instructions">Hope you like games! Each
                         crystal below has a
                         random value associated
                         with
@@ -31,10 +34,13 @@
                         the
                         target score you LOSE.
                     </p>
+                    <div id="choices" class="text-center">
+                        <button id="start" class="btn btn-info btn-lg">Start Game</button>
+                        <div class="game" style="color:white"></div>
+                        <div id="options"></div>
+                    </div>
                 </div>
             </div>
-
-
         </div>
         <div class="jumbotron" style="background: url('assets/images/thumb-1920-647552.jpg') fixed; background-size: auto 100%; margin-bottom: -5%;
             padding-bottom: 9.9% "></div>
