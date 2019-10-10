@@ -63,17 +63,6 @@ var trivia = {
     },
 };
 
-var correctChoices = 0;
-var wrongChoices = 0;
-
-var currentQuestion = 0;
-
-var unanswered = 0;
-var answered = 0;
-var userSelect = 0;
-
-var sec = 0;
-var time = 0;
 
 var messages = {
     correct: "Correct!",
