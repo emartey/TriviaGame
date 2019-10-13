@@ -20,24 +20,29 @@
         <div class="row" style="margin: 15%; margin-top:6%; padding: 3%;">
             <div class="col-lg-12" style="margin-bottom:-11%">
                 <h3 class="card-header text-center" style="background-color: pink; border: solid 5%" id="questions">
-                    Dragon Ball Trivia
+                    Dragonball Universe Trivia
                 </h3>
                 <div class="card-body" style="background-color: black">
-                    <p id="remaining-time" class="lead" style="display: none; color: white;">Remaining Time: <span
-                            id="timer"></span>
+                    <p id="remaining-time" class="text-center" style="display: none; color: white;">Remaining Time:
+                        <span id="timer"></span>
                     </p>
-                    <p class="strong text-center" style="color: white" id="instructions">Hope you like games! Each
-                        crystal below has a
-                        random value associated
-                        with
-                        it. Collect as many crystals as you can until you hit the target score. BEWARE: if you go over
-                        the
-                        target score you LOSE.
+                    <p class="strong text-center" style="color: white" id="instructions"> This time on Dragonball
+                        Trivia, we find out:
+                        How big a fan are YOU? Let's
+                        play shall we!
                     </p>
                     <div id="choices" class="text-center">
                         <button id="start" class="btn btn-info btn-lg">Start Game</button>
                         <div class="game" style="color:white"></div>
-                        <div id="options"></div>
+                        <div id="question" style="color:white"></div>
+                        <div id="play-again" style="color:tomato"></div>
+                        <div id="user-answer"></div>
+                    </div>
+                    <div id="results" class="text-center" style="display: none">
+                        <h2 style="color:white">Here's how you did!</h2>
+                        <p id="correct" style="color:green;">0</p>
+                        <p id="incorrect" style="color:red">0</p>
+                        <p id="unanswered" style="color: gray;">0</p>
                     </div>
                 </div>
             </div>

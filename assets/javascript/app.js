@@ -1,242 +1,298 @@
-// GLOBAL VARIABLES //
+var everythingSet = {
+    questions: [
+        {
+            question: "What is Goku's Saiyan (original) name?",
+            correct: "'Kakarot'",
+            answer1: "Legendary Super Saiyan",
+            answer2: "Gohan",
+            answer3: "Kakarot",
+            answer4: "Raditz"
+        },
+        {
+            question: "How many Dragon Balls need to be collected before wishes can be granted?",
+            correct: "7",
+            answer1: "7",
+            answer2: "6",
+            answer3: "9",
+            answer4: "3"
+        },
+        {
+            question: "On what planet did Goku first turn Super Saiyan?",
+            correct: "Namek",
+            answer1: "Mars",
+            answer2: "Earth",
+            answer3: "Planet Vegeta",
+            answer4: "Namek"
+        },
+        {
+            question: "What is the highest power level Super Sayian transformation in the series at this point in time?",
+            correct: "Ultra Instinct",
+            answer1: "Super Saiyan 3",
+            answer2: "Kaioken x100",
+            answer3: "Super Saiyan God",
+            answer4: "Ultra Instinct"
+        },
+        {
+            question: "What is Vegeta's Saiyan (original) name?",
+            correct: "Vegeta",
+            answer1: "Vidal",
+            answer2: "Vegeta",
+            answer3: "Bardock",
+            answer4: "Raditz"
+        },
+        {
+            question: "What was the name of Goku's Earth grandfather?",
+            correct: "Gohan",
+            answer1: "Gohan",
+            answer2: "Goku",
+            answer3: "Son",
+            answer4: "Goten"
+        },
+        {
+            question: "What was the name of the Saiyan home world?",
+            correct: "Planet Vegeta",
+            answer1: "Saiyana",
+            answer2: "Namek",
+            answer3: "Planet Vegeta",
+            answer4: "Earth"
+        },
 
-var trivia = {
-    // trivia properties
+        {
+            question: "Who killed Frieza first?",
+            correct: "Future Trunks",
+            answer1: "Goku",
+            answer2: "Vegeta",
+            answer3: "Krillin",
+            answer4: "Future Trunks"
+        },
+
+        {
+            question: "What is the name of the Namekian dragon?",
+            correct: "Porunga",
+            answer1: "Porunga",
+            answer2: "Shenron",
+            answer3: "Piccolo",
+            answer4: "Mr. Po Po"
+        },
+
+        {
+            question: "What is the name of the Earth dragon?",
+            correct: "Shenron",
+            answer1: "Porunga",
+            answer2: "Shenron",
+            answer3: "Piccolo",
+            answer4: "Mr. Po Po"
+        },
+
+        {
+            question: "Who was the last villian in the Dragon Ball Z series?",
+            correct: "Majin Boo",
+            answer1: "Frieza",
+            answer2: "Cell",
+            answer3: "Jiren",
+            answer4: "Majin Boo"
+        },
+
+        {
+            question: "What move is the villian, Majin Boo, finished off with?",
+            correct: "Spirit Bomb",
+            answer1: "Destructo Disc",
+            answer2: "Spirit Bomb",
+            answer3: "Final Flash",
+            answer4: "Kamehameha"
+        },
+
+        {
+            question: "Who was the first person to turn Super Saiyan 2 in Dragon Ball Z?",
+            correct: "Gohan",
+            answer1: "Goku",
+            answer2: "Gohan",
+            answer3: "Vegeta",
+            answer4: "Yamcha"
+        },
+
+        {
+            question: "What is Vegeta's daughter's name?",
+            correct: "Bulla",
+            answer1: "Bulma",
+            answer2: "Chi Chi",
+            answer3: "Bulla",
+            answer4: "Pan"
+        },
+
+        {
+            question: "What is Goku's signature move?",
+            correct: "Kamehameha",
+            answer1: "Spirit Bomb",
+            answer2: "Destructo Disc",
+            answer3: "Final Flash",
+            answer4: "Kamehameha"
+        },
+
+        {
+            question: "Who taught Goku the Kamehameha?",
+            correct: "Master Roshi",
+            answer1: "King Kai",
+            answer2: "Lord Beerus",
+            answer3: "Master Roshi",
+            answer4: "King Vegeta"
+        }
+    ],
+
+
+
+
+    gameQuestions: [],
+
     correct: 0,
     incorrect: 0,
     unanswered: 0,
-    currentSet: 0,
-    timer: 20,
-    timerOn: false,
-    timerId: '',
-    // questions options and answers data
-    questions: {
-        q1: "What is Goku's Saiyan (original) name?",
-        q2: 'On what planet did Goku first turn Super Saiyan?',
-        q3: 'How many Dragon Balls need to be collected before wishes can be granted?',
-        q4: 'What is the highest power level Super Sayian transformation in the series at this point in time?',
-        q5: "What is Vegeta's Saiyan (original) name?",
-        q6: "What was the name of Goku's Earth grandfather?",
-        q7: "What was the name of the Saiyan home world?",
-        q8: "Who killed Frieza first?",
-        q9: "What is the name of the Namekian dragon?",
-        q10: "What is the name of the Earth dragon?",
-        q11: "Who was the last villian in the Dragon Ball Z series?",
-        q12: "What move is the villian, Boo, finished off with?",
-        q13: "What is Vegeta's daughter's name?",
-        q14: "What is Goku's signature move?",
-        q15: "Who trained Lord Beerus?"
+    remaining: 0,
+    correctAnswer: "",
+    secondsLeft: 5,
+    timer: "",
+
+
+    startGame: function () {
+
+        $("#start").hide();
+        $("#instructions").hide();
+
+
+
+
+        //Sets questions array to this variable
+        this.gameQuestions = this.questions.concat();
+
+        //Get first question
+        this.getQuestion();
+        $("#question").show();
+        $("#remaining-time").show();
     },
-    options: {
-        q1: ['Raditz', 'Legendary Super Saiyan', 'Gohan', 'Kakarot'],
-        q2: ['Mars', 'Earth', 'Namek', 'Planet Vegeta'],
-        q3: ['5', '6', '9', '7'],
-        q4: ['Super Saiyan 3', 'Kaioken x100', 'Super Saiyan Blue', 'Ultra Instinct'],
-        q5: ['Vidal', 'Vegeta', 'Raditz', 'Bardock'],
-        q6: ['Gohan', 'Master Roshi', 'Lord Beerus', 'Piccolo'],
-        q7: ['Saiyana', 'Namek', 'Earth', 'Planet Vegeta'],
-        q8: ['Goku', 'Vegeta', 'Future Trunks', 'Krillin'],
-        q9: ['Shenron', 'Piccolo', 'Namek', 'Porunga'],
-        q10: ['Porunga', 'Earth', 'Shenron', 'Yamcha'],
-        q11: ['Frieza', 'Majin Boo', 'Cell', 'Jiren'],
-        q12: ['Kamehameha', 'Dragon Fist', 'Destructo Disk', 'Spirit Bomb'],
-        q13: ['Bulma', 'Chi Chi', 'Pan', 'Bulla'],
-        q14: ['Final Flash', 'Kamehameha', 'Spirit Bomb', 'Destructo Disc'],
-        q15: ['Jiren', 'Piccolo', 'King Vegeta', 'Whis']
+
+    playAgain: function () {
+
+        this.reset();
+        this.startGame();
     },
-    answers: {
-        q1: 'Kakarot',
-        q2: 'Namek',
-        q3: '7',
-        q4: 'Ultra Instinct',
-        q5: 'Vegeta',
-        q6: 'Gohan',
-        q7: 'Planet Vegeta',
-        q8: 'Future Trunks',
-        q9: 'Porunga',
-        q10: 'Shenron',
-        q11: 'Majin Boo',
-        q12: 'Spirit Bomb',
-        q13: 'Bulla',
-        q14: 'Kamehameha',
-        q15: 'Whis'
+
+    //reset
+    reset: function () {
+        this.correct = 0;
+        this.incorrect = 0;
+        this.unanswered = 0;
+        $("#results").hide();
+        $("#play-again").hide();
+
     },
-};
+
+    checkAnswer: function (answer) {
+
+        //answered correctly
+        if (answer === this.correctAnswer) {
+            this.correct++;
+            $("#question").empty();
+            $("#user-answer").html("<p class='text-center'>Correct!</p>");
+            $("#user-answer").css('color', 'green');
+        }
+        //answered incorrectly
+        else {
+            this.incorrect++;
+            $("#question").empty();
+            $("#user-answer").html("<p class='text-center'>Wrong Answer!</p>");
+            $("#user-answer").css('color', 'red');
+        }
+
+        //next question
+        setTimeout(function () {
+            everythingSet.getQuestion();
+        }, 3000)
 
 
-var messages = {
-    correct: "Correct!",
-    incorrect: "Incorrect!",
-    endTime: "Time Is Up!",
-    finished: "Game Over",
-};
+        //Clears timer interval
+        clearInterval(this.timer);
+    },
+
+    gameResults: function () {
+        clearInterval(this.timer);
+        $("#question").hide();
+        $("#remaining-time").hide();
+        $("#correct").text("CORRECT ANSWERS:" + this.correct);
+        $("#incorrect").text("WRONG ANSWERS: " + this.incorrect);
+        $("#unanswered").text("UNANSWERED: " + this.unanswered);
+        //Reset Question Result Html
+        $("#user-answer").empty();
+        $("#results").show();
+        $("#play-again").show();
+    },
+
+    getQuestion: function () {
+        //Sets remaining questions variable to length of gameQuestions array
+        this.remaining = this.gameQuestions.length;
+        //If there are still questions left
+        if (this.remaining > 0) {
+
+            //Resets seconds left for question
+            this.secondsLeft = 7;
+            $("#remaining-time").text(this.secondsLeft);
+
+            //Clears previous timer value
+            clearInterval(this.timer);
+
+            //Sets the timer interval
+            this.timer = setInterval(function () {
+                everythingSet.secondsLeft--;
+                //Updates timer 
+                $("#remaining-time").text(everythingSet.secondsLeft);
+                //Checks if player has run out of time
+                if (everythingSet.secondsLeft === 0) {
+                    everythingSet.unanswered++;
+                    //Goes to next question
+                    everythingSet.checkAnswer();
+                }
+            }, 1000);
+            //Gets random number for question index
+            var random = Math.floor(Math.random() * this.gameQuestions.length);
+
+            //sets variable as question object
+            var currentQuestion = this.gameQuestions[random];
+
+            //sets correct answer variable to the correct answer 
+            this.correctAnswer = currentQuestion.correct;
+
+            //Reset user answer in Html
+            $("#user-answer").empty();
 
 
+            $("#question").append("<h4>" + currentQuestion.question + "</h4>");
+            $("#question").append("<button class='btn btn-info btn-lg' data-answer='" + currentQuestion.answer1 + "'>" + currentQuestion.answer1 + "</button> ");
+            $("#question").append("<button class='btn btn-info btn-lg' data-answer=' " + currentQuestion.answer2 + "'>" + currentQuestion.answer2 + "</button> ");
+            $("#question").append("<button class='btn btn-info btn-lg' data-answer=' " + currentQuestion.answer3 + "'>" + currentQuestion.answer3 + "</button> ");
+            $("#question").append("<button class='btn btn-info btn-lg' data-answer=' " + currentQuestion.answer4 + "'>" + currentQuestion.answer4 + "</button> ");
+            $(".btn").css('margin', '3%');
 
-//===========================================================================================================================
+            //Keeps current question from being rerun
+            this.gameQuestions.splice(random, 1);
+        } else {
+            //if no more questions then shows game results
+            this.gameResults();
 
-
-// FUNCTIONS //
-$(document).ready(function () {
-
-    // event listeners
-    $("#start").show();
-    $("#remaining-time").hide();
-    $("#start").on('click', startGame);
-    $("#options").hide();
-    $('#instructions').show();
-    $('.game').hide()
-
-
-
-});
-
-var startGame = function () {
-    // restarting game results
-    trivia.currentSet = 0;
-    trivia.correct = 0;
-    trivia.incorrect = 0;
-    trivia.unanswered = 0;
-    clearInterval(trivia.timerId);
-
-    // show game section
-    $('.game').show();
-
-    // hide instructions
-    $('#instructions').hide()
-
-    //  empty last results
-    $('#results').html('');
-
-    // show timer
-    $('#timer').text(trivia.timer);
-
-    // remove start button
-    $('#start').hide();
-
-    $('#remaining-time').show();
-
-    // ask first question
-    nextQuestion();
-
-};
-// method to loop through and display questions and options 
-var nextQuestion = function () {
-
-    // set timer to 20 seconds each question
-
-
-    $('#timer').text(trivia.timer);
-
-    // to prevent timer speed up
-    if (!trivia.timerOn) {
-        trivia.timerId = setInterval(timerRunning, 1000);
-    };
-
-    // gets all the questions then indexes the current questions
-    var questionContent = Object.values(trivia.questions)[trivia.currentSet];
-    $('.game').text(questionContent);
-
-    // an array of all the user options for the current question
-    var questionOptions = function () {
-        Object.values(trivia.options)[trivia.currentSet];
-
-        // creates all the trivia guess options in the html
-        $.each(questionOptions, function (index, key) {
-            $('#options').append($('<button class="option btn btn-info btn-lg">' + key + '</button>'));
-        })
-    }
-}
-// Timer 
-var timerRunning = function () {
-    // if timer still has time left and there are still questions left to ask
-    if (trivia.timer > -1 && trivia.currentSet < Object.keys(trivia.questions).length) {
-        $('#timer').text(trivia.timer);
-        trivia.timer--;
-        if (trivia.timer === 4) {
-            $('#timer').addClass('last-seconds');
         }
     }
-    // the time has run out and increment unanswered, run result
-    else if (trivia.timer === -1) {
-        trivia.unanswered++;
-        trivia.result = false;
-        clearInterval(trivia.timerId);
-        resultId = setTimeout(trivia.guessResult, 1000);
-        $('#results').html('<h3>Out of time! The answer was ' + Object.values(trivia.answers)[trivia.currentSet] + '</h3>');
-    }
-    // if all the questions have been shown end the game, show results
-    else if (trivia.currentSet === Object.keys(trivia.questions).length) {
-
-        // adds results of game (correct, incorrect, unanswered) to the page
-        $('#results')
-            .html('<h3>Thank you for playing!</h3>' +
-                '<p>Correct: ' + trivia.correct + '</p>' +
-                '<p>Incorrect: ' + trivia.incorrect + '</p>' +
-                '<p>Unaswered: ' + trivia.unanswered + '</p>' +
-                '<p>Please play again!</p>');
-
-        // hide game sction
-        $('#game').hide();
-
-        // show start button to begin a new game
-        $('#start').show();
-    }
-
-};
-// method to evaluate the option clicked
-var guessChecker = function () {
-
-    // timer ID for gameResult setTimeout
-    var resultId;
-
-    // the answer to the current question being asked
-    var currentAnswer = Object.values(trivia.answers)[trivia.currentSet];
-
-    // if the text of the option picked matches the answer of the current question, increment correct
-    if ($(this).text() === currentAnswer) {
-        // turn button green for correct
-        $(this).addClass('btn-success').removeClass('btn-info');
-
-        trivia.correct++;
-        clearInterval(trivia.timerId);
-        resultId = setTimeout(trivia.guessResult, 1000);
-        $('#results').html('<h3>Correct Answer!</h3>');
-    }
-    // else the user picked the wrong option, increment incorrect
-    else {
-        // turn button clicked red for incorrect
-        $(this).addClass('btn-danger').removeClass('btn-info');
-
-        trivia.incorrect++;
-        clearInterval(trivia.timerId);
-        resultId = setTimeout(trivia.guessResult, 1000);
-        $('#results').html('<h3>Better luck next time! ' + currentAnswer + '</h3>');
-    }
 
 }
-// method to remove previous question results and options
-var guessResult = function () {
+//Event Listeners
+$("#start").on("click", function () {
+    //start game
+    everythingSet.startGame();
+});
 
-    // increment to next question set
-    trivia.currentSet++;
+$("#play-again").on("click", function () {
+    //start game
+    everythingSet.playAgain();
+})
 
-    // remove the options and results
-    $('.option').remove();
-    $('#results h3').remove();
-
-    // begin next question
-    trivia.nextQuestion();
-
-}
-
-
-
-
-
-
-
-//===========================================================================================================================
-
-// START GAME //
-startGame();
+$("#question").on("click", ".btn", function () {
+    //check answer
+    everythingSet.checkAnswer($(this).attr("data-answer"));
+})
