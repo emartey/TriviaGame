@@ -2,7 +2,7 @@ var everythingSet = {
     questions: [
         {
             question: "What is Goku's Saiyan (original) name?",
-            correct: "'Kakarot'",
+            correct: "Kakarot",
             answer1: "Legendary Super Saiyan",
             answer2: "Gohan",
             answer3: "Kakarot",
@@ -93,14 +93,7 @@ var everythingSet = {
             answer4: "Majin Boo"
         },
 
-        {
-            question: "What move is the villian, Majin Boo, finished off with?",
-            correct: "Spirit Bomb",
-            answer1: "Destructo Disc",
-            answer2: "Spirit Bomb",
-            answer3: "Final Flash",
-            answer4: "Kamehameha"
-        },
+
 
         {
             question: "Who was the first person to turn Super Saiyan 2 in Dragon Ball Z?",
@@ -203,11 +196,12 @@ var everythingSet = {
             $("#user-answer").css('color', 'red');
         }
 
+
         //next question
         setTimeout(function () {
             everythingSet.getQuestion();
         }, 3000)
-
+        console.log(this.checkAnswer)
 
         //Clears timer interval
         clearInterval(this.timer);
@@ -217,7 +211,7 @@ var everythingSet = {
         clearInterval(this.timer);
         $("#question").hide();
         $("#remaining-time").hide();
-        $("#correct").text("CORRECT ANSWERS:" + this.correct);
+        $("#correct").text("CORRECT ANSWERS: " + this.correct);
         $("#incorrect").text("WRONG ANSWERS: " + this.incorrect);
         $("#unanswered").text("UNANSWERED: " + this.unanswered);
         //Reset Question Result Html
@@ -247,6 +241,7 @@ var everythingSet = {
                 //Checks if player has run out of time
                 if (everythingSet.secondsLeft === 0) {
                     everythingSet.unanswered++;
+                    everythingSet.incorrect--;
                     //Goes to next question
                     everythingSet.checkAnswer();
                 }
@@ -265,10 +260,10 @@ var everythingSet = {
 
 
             $("#question").append("<h4>" + currentQuestion.question + "</h4>");
-            $("#question").append("<button class='btn btn-info btn-lg' data-answer='" + currentQuestion.answer1 + "'>" + currentQuestion.answer1 + "</button> ");
-            $("#question").append("<button class='btn btn-info btn-lg' data-answer=' " + currentQuestion.answer2 + "'>" + currentQuestion.answer2 + "</button> ");
-            $("#question").append("<button class='btn btn-info btn-lg' data-answer=' " + currentQuestion.answer3 + "'>" + currentQuestion.answer3 + "</button> ");
-            $("#question").append("<button class='btn btn-info btn-lg' data-answer=' " + currentQuestion.answer4 + "'>" + currentQuestion.answer4 + "</button> ");
+            $("#question").append("<button class='btn btn-info btn-lg' data-answer=" + currentQuestion.answer1 + ">" + currentQuestion.answer1 + "</button> ");
+            $("#question").append("<button class='btn btn-info btn-lg' data-answer=" + currentQuestion.answer2 + ">" + currentQuestion.answer2 + "</button> ");
+            $("#question").append("<button class='btn btn-info btn-lg' data-answer=" + currentQuestion.answer3 + ">" + currentQuestion.answer3 + "</button> ");
+            $("#question").append("<button class='btn btn-info btn-lg' data-answer=" + currentQuestion.answer4 + ">" + currentQuestion.answer4 + "</button> ");
             $(".btn").css('margin', '3%');
 
             //Keeps current question from being rerun
