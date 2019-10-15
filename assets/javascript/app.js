@@ -132,9 +132,6 @@ var everythingSet = {
         }
     ],
 
-
-
-
     gameQuestions: [],
 
     correct: 0,
@@ -151,16 +148,14 @@ var everythingSet = {
         $("#start").hide();
         $("#instructions").hide();
 
-
-
-
-        //Sets questions array to this variable
+        //Sets questions array to this variable and makes readable
         this.gameQuestions = this.questions.concat();
 
         //Get first question
         this.getQuestion();
         $("#question").show();
         $("#remaining-time").show();
+
     },
 
     playAgain: function () {
@@ -169,7 +164,7 @@ var everythingSet = {
         this.startGame();
     },
 
-    //reset
+
     reset: function () {
         this.correct = 0;
         this.incorrect = 0;
@@ -179,60 +174,18 @@ var everythingSet = {
 
     },
 
-    checkAnswer: function (answer) {
-
-        //answered correctly
-        if (answer === this.correctAnswer) {
-            this.correct++;
-            $("#question").empty();
-            $("#user-answer").html("<p class='text-center'>Correct!</p>");
-            $("#user-answer").css('color', 'green');
-        }
-        //answered incorrectly
-        else {
-            this.incorrect++;
-            $("#question").empty();
-            $("#user-answer").html("<p class='text-center'>Wrong Answer!</p>");
-            $("#user-answer").css('color', 'red');
-        }
-
-
-        //next question
-        setTimeout(function () {
-            everythingSet.getQuestion();
-        }, 3000)
-        console.log(this.checkAnswer)
-
-        //Clears timer interval
-        clearInterval(this.timer);
-    },
-
-    gameResults: function () {
-        clearInterval(this.timer);
-        $("#question").hide();
-        $("#remaining-time").hide();
-        $("#correct").text("CORRECT ANSWERS: " + this.correct);
-        $("#incorrect").text("WRONG ANSWERS: " + this.incorrect);
-        $("#unanswered").text("UNANSWERED: " + this.unanswered);
-        //Reset Question Result Html
-        $("#user-answer").empty();
-        $("#results").show();
-        $("#play-again").show();
-    },
-
     getQuestion: function () {
+
         //Sets remaining questions variable to length of gameQuestions array
         this.remaining = this.gameQuestions.length;
-        //If there are still questions left
+
+        //If there are still questions left in round
 
         if (this.remaining > 10) {
 
             //Resets seconds left for question
             this.secondsLeft = 7;
             $("#remaining-time").text(this.secondsLeft);
-
-            //Clears previous timer value
-            clearInterval(this.timer);
 
             //Sets the timer interval
             this.timer = setInterval(function () {
@@ -277,12 +230,48 @@ var everythingSet = {
 
         }
 
+    },
+
+    checkAnswer: function (answer) {
+
+        //answered correctly
+        if (answer === this.correctAnswer) {
+            this.correct++;
+            $("#question").empty();
+            $("#user-answer").html("<p class='text-center'>Correct!</p>");
+            $("#user-answer").css('color', 'green');
+        }
+        //answered incorrectly
+        else {
+            this.incorrect++;
+            $("#question").empty();
+            $("#user-answer").html("<p class='text-center'>Wrong Answer!</p>");
+            $("#user-answer").css('color', 'red');
+        }
 
 
+        //next question
+        setTimeout(function () {
+            everythingSet.getQuestion();
+        }, 3000)
+        console.log(this.checkAnswer)
 
+        //Clears timer interval
+        clearInterval(this.timer);
+    },
 
+    gameResults: function () {
+        clearInterval(this.timer);
+        $("#question").hide();
+        $("#remaining-time").hide();
+        $("#correct").text("CORRECT ANSWERS: " + this.correct);
+        $("#incorrect").text("WRONG ANSWERS: " + this.incorrect);
+        $("#unanswered").text("UNANSWERED: " + this.unanswered);
+        //Reset Question Result Html
+        $("#user-answer").empty();
+        $("#results").show();
+        $("#play-again").show();
     }
-
 }
 
 //Event Listeners
@@ -300,3 +289,19 @@ $("#question").on("click", ".btn", function () {
 
     everythingSet.checkAnswer($(this).attr("data-answer"));
 })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
