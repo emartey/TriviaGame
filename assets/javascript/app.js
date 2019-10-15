@@ -224,7 +224,8 @@ var everythingSet = {
         //Sets remaining questions variable to length of gameQuestions array
         this.remaining = this.gameQuestions.length;
         //If there are still questions left
-        if (this.remaining > 0) {
+
+        if (this.remaining > 10) {
 
             //Resets seconds left for question
             this.secondsLeft = 7;
@@ -246,6 +247,7 @@ var everythingSet = {
                     everythingSet.checkAnswer();
                 }
             }, 1000);
+
             //Gets random number for question index
             var random = Math.floor(Math.random() * this.gameQuestions.length);
 
@@ -260,34 +262,41 @@ var everythingSet = {
 
 
             $("#question").append("<h4>" + currentQuestion.question + "</h4>");
-            $("#question").append("<button class='btn btn-info btn-lg' data-answer=" + currentQuestion.answer1 + ">" + currentQuestion.answer1 + "</button> ");
-            $("#question").append("<button class='btn btn-info btn-lg' data-answer=" + currentQuestion.answer2 + ">" + currentQuestion.answer2 + "</button> ");
-            $("#question").append("<button class='btn btn-info btn-lg' data-answer=" + currentQuestion.answer3 + ">" + currentQuestion.answer3 + "</button> ");
-            $("#question").append("<button class='btn btn-info btn-lg' data-answer=" + currentQuestion.answer4 + ">" + currentQuestion.answer4 + "</button> ");
+            $("#question").append("<button class='btn btn-info btn-lg' data-answer='" + currentQuestion.answer1 + "'> " + currentQuestion.answer1 + "</button>");
+            $("#question").append("<button class='btn btn-info btn-lg' data-answer='" + currentQuestion.answer2 + "'> " + currentQuestion.answer2 + "</button>");
+            $("#question").append("<button class='btn btn-info btn-lg' data-answer='" + currentQuestion.answer3 + "'> " + currentQuestion.answer3 + "</button>");
+            $("#question").append("<button class='btn btn-info btn-lg' data-answer='" + currentQuestion.answer4 + "'> " + currentQuestion.answer4 + "</button>");
             $(".btn").css('margin', '3%');
 
             //Keeps current question from being rerun
             this.gameQuestions.splice(random, 1);
+
         } else {
-            //if no more questions then shows game results
+            //show game results
             this.gameResults();
 
         }
+
+
+
+
+
     }
 
 }
+
 //Event Listeners
 $("#start").on("click", function () {
-    //start game
+
     everythingSet.startGame();
 });
 
 $("#play-again").on("click", function () {
-    //start game
+
     everythingSet.playAgain();
 })
 
 $("#question").on("click", ".btn", function () {
-    //check answer
+
     everythingSet.checkAnswer($(this).attr("data-answer"));
 })
