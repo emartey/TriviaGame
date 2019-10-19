@@ -141,6 +141,8 @@ var everythingSet = {
     correctAnswer: "",
     secondsLeft: 5,
     timer: "",
+    winCount: 0,
+    lossCount: 0,
 
 
     startGame: function () {
@@ -267,11 +269,32 @@ var everythingSet = {
         $("#correct").text("CORRECT ANSWERS: " + this.correct);
         $("#incorrect").text("WRONG ANSWERS: " + this.incorrect);
         $("#unanswered").text("UNANSWERED: " + this.unanswered);
+
+
         //Reset Question Result Html
         $("#user-answer").empty();
         $("#results").show();
         $("#play-again").show();
+        this.roundComplete();
+    },
+
+    roundComplete: function () {
+
+        if (this.correct >= 3) {
+            this.winCount++;
+        }
+
+        // if user lost
+
+        else if (this.incorrect >= 3) {
+            this.lossCount++;
+        }
+
+        $("#winCount").text("ROUNDS WON: " + this.winCount);
+        $("#lossCount").text("ROUNDS LOST: " + this.lossCount);
+
     }
+
 }
 
 //Event Listeners
@@ -289,6 +312,14 @@ $("#question").on("click", ".btn", function () {
 
     everythingSet.checkAnswer($(this).attr("data-answer"));
 })
+
+
+
+
+
+
+
+
 
 
 

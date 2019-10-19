@@ -3,15 +3,40 @@ body{
 };
 
 
-@media screen and (min-width: 300px) {
-       
-       body {
-              background: url('assets/images/giphy.gif') no-repeat center center fixed; 
-              background-size: cover;
-       };
-       
-       html{
-              background: url('assets/images/dragonballs.jpg') no-repeat center center fixed; 
-             
-}
-};
+/* Media Queries 640px */
+@media screen and (max-width: 640px) {
+    html,
+    body{
+        background-size: 100%;
+    }
+   
+  }
+  
+  
+  /* Media Queries 768px */
+  @media screen and (min-width: 641px) and (max-width: 768px) {
+    html,
+    body{
+        background-size: 100%;
+    }
+  
+  }
+  
+  /* Media Queries 980px */
+  @media screen and (min-width: 769px) and (max-width: 980px) {
+    html,
+    body{
+        background-size: 100%;
+    }
+  
+  
+  }
+    /* Media Queries MAX OUT*/
+  @media screen and (min-width: 980px) and (max-width: 1600px) {
+    html,
+    body{
+        background-size: 100%;
+    }
+  
+  
+  }
