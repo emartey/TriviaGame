@@ -1,42 +1,86 @@
-body{
-       margin: 10px;
-};
+#top{
+  background: url('assets/images/thumb-1920-647552.jpg') fixed; 
+  background-size: auto 100%; 
+  padding-bottom: 12%; 
+  border-radius: 0rem
+}
+
+#bottom{
+  background: url('assets/images/thumb-1920-647552.jpg') fixed; 
+  background-size: auto 100%; 
+  margin-bottom: -5%;
+  padding-bottom: 9.9% 
+}
+
 
 
 /* Media Queries 640px */
 @media screen and (max-width: 640px) {
     html,
+    body,
+    .jumbotron{
+        margin-top: 6%;
+    }
+
     body{
-        background-size: 100%;
+      margin: 21px;
     }
    
+    html{
+     margin: 7% 10% 0% 10%;
+   }
   }
   
   
   /* Media Queries 768px */
   @media screen and (min-width: 641px) and (max-width: 768px) {
     html,
-    body{
-        background-size: 100%;
+    body,
+    .jumbotron{
+        margin-top: 6%;
     }
+
+    body{
+      margin: 30px;
+    }
+
+    html{
+     margin: 7% 10% 0% 10%;
+   }
   
   }
   
   /* Media Queries 980px */
   @media screen and (min-width: 769px) and (max-width: 980px) {
     html,
-    body{
-        background-size: 100%;
+    body,
+    .jumbotron{
+        background-size: cover 100%;
     }
-  
+
+    body{
+      margin: 25px;
+    }
+ 
+    html{
+     margin: 7% 10% 0% 10%;
+    }
   
   }
     /* Media Queries MAX OUT*/
   @media screen and (min-width: 980px) and (max-width: 1600px) {
     html,
+    body,
+    .jumbotron{
+        margin-top: 2%;
+    }
+
     body{
-        background-size: 100%;
+      margin: 30px;
     }
   
+    html{
+     margin: 7% 10% 0% 10%;
+   }
   
   }
